@@ -10,15 +10,22 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
+@Inheritance
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "type")
 @Entity
+@Table(name = "membership_type")
 public abstract class MembershipType {
     @Id
     @SequenceGenerator(name = "memtype_sequence", sequenceName = "memtype_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "memtype_sequence")
     private Long id;
+    @Column
     private MembershipTypeName name;
+    @Column
     private Double membershipCost;
+    @Column
     private LocalDate startDate;
+    @Column
     private LocalDate endDate;
 
 
