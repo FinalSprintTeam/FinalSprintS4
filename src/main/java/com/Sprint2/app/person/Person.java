@@ -1,6 +1,7 @@
 package com.Sprint2.app.person;
 
 import com.Sprint2.app.person.address.Address;
+import com.Sprint2.app.person.member.type.MembershipType;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -39,6 +40,10 @@ public abstract class Person implements Serializable {
 
     @Column(name = "email")
     private String email;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @Column(name="membership_type_id")
+    private MembershipType membership;
 
     @Override
     public String toString() {
