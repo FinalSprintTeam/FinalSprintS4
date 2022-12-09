@@ -27,8 +27,8 @@ public class MemberController {
     }
 
     @PostMapping(path = "api/member/new")
-    public void registerMember(@RequestBody Member member, @RequestParam Long addressID){
-        memberService.addMember(member, addressID);
+    public void registerMember(@RequestBody Member member, @RequestParam Long addressID, @RequestParam String typeName){
+        memberService.addMember(member, addressID, typeName);
     }
 
 }
