@@ -4,12 +4,14 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.Transient;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
 @Inheritance
 @DiscriminatorValue("other")
+@NoArgsConstructor
 public class Other extends MembershipType implements Membershipable{
     @Transient
     private Double discount;
@@ -22,7 +24,7 @@ public class Other extends MembershipType implements Membershipable{
         setDiscount(discount);
         setDuration(duration);
         super.setMembershipCost(getMembershipCostDiscount(MEMBERSHIP_COST, discount));
-        super.setName(MembershipTypeName.OTHER);
+        super.setName("Other");
         super.setEndDate(startDate);
     }
 

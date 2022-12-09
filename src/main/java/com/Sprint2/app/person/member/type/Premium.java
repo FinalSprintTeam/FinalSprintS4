@@ -4,11 +4,13 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.Transient;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 @Entity
 @Inheritance
 @DiscriminatorValue("premium")
+@NoArgsConstructor
 public class Premium extends MembershipType implements Membershipable {
 
     @Transient
@@ -16,13 +18,13 @@ public class Premium extends MembershipType implements Membershipable {
 
     public Premium(LocalDate startDate) {
         super(startDate);
-        super.setName(MembershipTypeName.PREMIUM);
+        super.setName("Premium");
         super.setMembershipCost(MEMBERSHIP_COST * 1.50);
         super.setEndDate(getEndDate(startDate));
     }
 
     @Override
     public LocalDate getEndDate(LocalDate startDate) {
-        return null;
+        return startDate.plusDays(this.MEMBERSHIPDURATION);
     }
 }

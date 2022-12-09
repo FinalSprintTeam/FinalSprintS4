@@ -2,6 +2,7 @@ package com.Sprint2.app.person.member;
 
 import com.Sprint2.app.person.address.Address;
 import com.Sprint2.app.person.address.AddressRepository;
+import com.Sprint2.app.person.member.type.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +26,19 @@ public class MemberService {
                 .orElseThrow(() -> new IllegalStateException("Error! Member with ID " + id + " does not exist!"));
     }
 
-    public void addMember(Member member, Long addressID){
+    public void addMember(Member member, Long addressID, String typeName){
+        MembershipTypeName membership = MembershipTypeName.NORMAL;
         Address address = addressRepository.findById(addressID)
-                .orElseThrow(() -> new IllegalStateException("Invalid address ID!"));;
+                .orElseThrow(() -> new IllegalStateException("Invalid address ID!"));
+
+        switch (typeName) {
+            case "Premium" -> membership = MembershipTypeName.PREMIUM;
+            case "Trial" -> membership = MembershipTypeName.TRIAL;
+        }
+        MembershipType membershipType = MembershipFactory.createMembership(membership);
 
         member.setAddress(address);
+        member.setMembership(membershipType);
         memberRepository.save(member);
     }
 }

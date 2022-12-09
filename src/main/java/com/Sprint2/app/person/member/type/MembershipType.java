@@ -1,5 +1,8 @@
 package com.Sprint2.app.person.member.type;
 
+import com.Sprint2.app.person.member.Member;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,13 +17,14 @@ import java.time.LocalDate;
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "type")
 @Entity
 @Table(name = "membership_type")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public abstract class MembershipType {
     @Id
     @SequenceGenerator(name = "memtype_sequence", sequenceName = "memtype_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "memtype_sequence")
     private Long id;
     @Column
-    private MembershipTypeName name;
+    private String name;
     @Column
     private Double membershipCost;
     @Column
@@ -28,8 +32,13 @@ public abstract class MembershipType {
     @Column
     private LocalDate endDate;
 
+    @OneToOne(mappedBy = "membership")
+    @JsonIgnore
+    private Member member;
 
-    public MembershipType(MembershipTypeName name, Double membershipCost, LocalDate startDate, LocalDate endDate) {
+
+
+    public MembershipType(String name, Double membershipCost, LocalDate startDate, LocalDate endDate) {
         this.name = name;
         this.membershipCost = membershipCost;
         this.startDate = startDate;

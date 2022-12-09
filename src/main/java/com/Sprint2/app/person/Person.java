@@ -41,8 +41,8 @@ public abstract class Person implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @Column(name="membership_type_id")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="membership_type_id", referencedColumnName = "id")
     private MembershipType membership;
 
     @Override
