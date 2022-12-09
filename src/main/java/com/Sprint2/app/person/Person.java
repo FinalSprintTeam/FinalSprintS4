@@ -1,7 +1,7 @@
 package com.Sprint2.app.person;
 
 import com.Sprint2.app.person.address.Address;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +10,8 @@ import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,8 +19,8 @@ import org.hibernate.annotations.OnDeleteAction;
 @Inheritance
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "type")
 @Entity
-@Table(name = "members")
-public abstract class Person {
+@Table(name = "member")
+public abstract class Person implements Serializable {
     @Id
     @SequenceGenerator(name = "person_sequence", sequenceName = "person_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_sequence")
@@ -33,7 +35,6 @@ public abstract class Person {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Address address;
 
     @Column(name = "email")
