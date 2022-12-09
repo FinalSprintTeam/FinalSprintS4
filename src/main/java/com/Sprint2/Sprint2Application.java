@@ -1,4 +1,4 @@
-package com.example.Sprint2;
+package com.Sprint2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
