@@ -1,5 +1,6 @@
 package com.Sprint2.app.person.member;
 
+import com.Sprint2.app.person.address.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +26,8 @@ public class MemberController {
     }
 
     @PostMapping(path = "api/member/new")
-    public void registerMember(@RequestBody Member member){
-        memberService.addMember(member);
+    public void registerMember(@RequestBody Member member, @RequestParam Long addressID){
+        memberService.addMember(member, addressID);
     }
 
 }
