@@ -14,7 +14,9 @@ public class MembershipFactory {
         return  new Trial(starDate);
     }else if (name.equals(MembershipTypeName.OTHER)){
         return new Other(starDate,discount, duration );
-        }else{
+        } else if (name.equals(MembershipTypeName.PREMIUM)) {
+        return new Premium(starDate);
+    } else{
         return null;
     }
 }
