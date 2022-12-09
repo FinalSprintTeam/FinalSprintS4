@@ -1,4 +1,4 @@
-package com.Sprint2.person.member.type;
+package com.Sprint2.app.person.member.type;
 
 import jakarta.persistence.*;
 

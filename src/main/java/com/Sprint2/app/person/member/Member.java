@@ -1,6 +1,6 @@
-package com.Sprint2.person.member;
+package com.Sprint2.app.person.member;
 
-import com.Sprint2.person.Person;
+import com.Sprint2.app.person.Person;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

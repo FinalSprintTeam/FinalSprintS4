@@ -1,4 +1,4 @@
-package com.Sprint2.person.address;
+package com.Sprint2.app.person.address;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
