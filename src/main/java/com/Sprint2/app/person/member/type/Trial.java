@@ -1,8 +1,16 @@
 package com.Sprint2.app.person.member.type;
 
-import java.time.LocalDate;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.Transient;
 
+import java.time.LocalDate;
+@Entity
+@Inheritance
+@DiscriminatorValue("trail")
 public class Trial extends MembershipType implements Membershipable{
+    @Transient
     private Integer MEMBERSHIPDURATION = 30;
 
     public Trial(LocalDate startDate) {

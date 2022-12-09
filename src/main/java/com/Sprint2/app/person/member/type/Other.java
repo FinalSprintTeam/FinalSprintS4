@@ -1,10 +1,19 @@
 package com.Sprint2.app.person.member.type;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.Transient;
+
 import java.time.LocalDate;
 
+@Entity
+@Inheritance
+@DiscriminatorValue("other")
 public class Other extends MembershipType implements Membershipable{
-
+    @Transient
     private Double discount;
+    @Transient
     private Integer duration;
 
 
