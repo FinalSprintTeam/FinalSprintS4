@@ -1,6 +1,6 @@
-package com.Sprint2.person;
+package com.Sprint2.app.person;
 
-import com.Sprint2.person.address.Address;
+import com.Sprint2.app.person.address.Address;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

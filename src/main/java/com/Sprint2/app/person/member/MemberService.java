@@ -1,4 +1,4 @@
-package com.Sprint2.person.member;
+package com.Sprint2.app.person.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
