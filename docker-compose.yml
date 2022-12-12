@@ -1,0 +1,10 @@
+version: '3'
+services:
+  myapp-main:
+    image: s4_final_sprint:latest
+    ports:
+      - 8081:8081
+    environment:
+      - spring.datasource.url=jdbc:postgresql://s4-sprint-2-db.colnwobgzain.us-east-1.rds.amazonaws.com:5432/sprint2
+      - spring.datasource.username=postgres
+      - spring.datasource.password=123Password
