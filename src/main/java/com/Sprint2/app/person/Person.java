@@ -2,6 +2,7 @@ package com.Sprint2.app.person;
 
 import com.Sprint2.app.person.address.Address;
 import com.Sprint2.app.person.member.type.MembershipType;
+import com.Sprint2.app.tournament.scoring.TournamentMember;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -40,10 +42,6 @@ public abstract class Person implements Serializable {
 
     @Column(name = "email")
     private String email;
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="membership_type_id", referencedColumnName = "id")
-    private MembershipType membership;
 
     @Override
     public String toString() {
