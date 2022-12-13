@@ -1,10 +1,13 @@
 version: '3'
 services:
   myapp-main:
-    image: s4_final_sprint:latest
+    image: s4_final_sprint:sprinter
     ports:
-      - 8081:8081
+      - 80:8080
     environment:
       - spring.datasource.url=jdbc:postgresql://s4-sprint-2-db.colnwobgzain.us-east-1.rds.amazonaws.com:5432/sprint2
       - spring.datasource.username=postgres
       - spring.datasource.password=123Password
+      - spring.jpa.show-sql=true
+      - spring.jpa.hibernate.ddl-auto=update
+      - server.port=80
