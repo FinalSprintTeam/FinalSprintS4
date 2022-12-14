@@ -36,4 +36,9 @@ public class TournamentController {
                                       @RequestParam int score){
        tournamentService.addMemberToTournament(memberId, tournamentId, score);
     }
+
+    @PutMapping(path = "api/tournament/{id}/edit")
+    public void editTournamentDetails(@RequestBody Tournament tournamentToEdit){
+        tournamentService.editTournament(tournamentToEdit);
+    }
 }
