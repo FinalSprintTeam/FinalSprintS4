@@ -51,4 +51,10 @@ public class TournamentService {
 
         // tournamentToEdit.setMembers(tournament.getMembers());
     }
+
+    public void deleteTournament(Long tournamentId){
+        boolean exists = tournamentRepository.existsById(tournamentId);
+        if (!exists) throw new IllegalStateException("Error! Tournament with ID " + tournamentId + " does not exist!");
+        else tournamentRepository.deleteById(tournamentId);
+    }
 }
