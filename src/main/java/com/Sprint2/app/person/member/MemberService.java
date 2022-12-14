@@ -26,7 +26,7 @@ public class MemberService {
                 .orElseThrow(() -> new IllegalStateException("Error! Member with ID " + id + " does not exist!"));
     }
 
-    public void addMember(Member member, Long addressID, String typeName){
+    public Member addMember(Member member, Long addressID, String typeName){
         MembershipTypeName membership = MembershipTypeName.NORMAL;
         Address address = addressRepository.findById(addressID)
                 .orElseThrow(() -> new IllegalStateException("Invalid address ID!"));
@@ -39,6 +39,6 @@ public class MemberService {
 
         member.setAddress(address);
         member.setMembership(membershipType);
-        memberRepository.save(member);
+        return memberRepository.save(member);
     }
 }

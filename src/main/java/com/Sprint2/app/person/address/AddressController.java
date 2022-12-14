@@ -1,9 +1,14 @@
 package com.Sprint2.app.person.address;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -20,8 +25,10 @@ public class AddressController {
         return addressService.getAddress(id);
     }
 
-    @PostMapping(path = "api/address/new")
-    public void newAddress(@RequestBody Address address){
-        addressService.addAddress(address);
+    @PostMapping(path = "api/address/new", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Long>> newAddress(@RequestBody Address address){
+        Map<String, Long> body = new HashMap<>();
+        body.put("id", addressService.addAddress(address));
+        return new ResponseEntity<>(body, HttpStatus.OK);
     }
 }
