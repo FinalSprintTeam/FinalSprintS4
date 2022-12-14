@@ -24,8 +24,8 @@ public class TournamentService {
                 .orElseThrow(() -> new IllegalStateException("Tournament with id " + tournamentid + " does not exist!"));
     }
 
-    public void addTournament(Tournament tournament) {
-        tournamentRepository.save(tournament);
+    public Tournament addTournament(Tournament tournament) {
+        return tournamentRepository.save(tournament);
     }
 
     @Transactional
@@ -49,6 +49,6 @@ public class TournamentService {
         tournamentToEdit.setStartDate(tournament.getStartDate());
         tournamentToEdit.setEndDate(tournament.getEndDate());
 
-        tournamentToEdit.setMembers(tournament.getMembers());
+        // tournamentToEdit.setMembers(tournament.getMembers());
     }
 }

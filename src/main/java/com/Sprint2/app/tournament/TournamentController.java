@@ -2,6 +2,9 @@ package com.Sprint2.app.tournament;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,9 +28,9 @@ public class TournamentController {
         }
     }
 
-    @PostMapping(path = "api/tournament/new")
-    public void registerTournament(@RequestBody Tournament tournament){
-        tournamentService.addTournament(tournament);
+    @PostMapping(path = "api/tournament/new", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Tournament> registerTournament(@RequestBody Tournament tournament){
+        return new ResponseEntity<>(tournamentService.addTournament(tournament), HttpStatus.OK) ;
     }
 
     @PostMapping(path = "api/tournament/addMember")
