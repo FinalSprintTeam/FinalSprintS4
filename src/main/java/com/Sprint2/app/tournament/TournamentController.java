@@ -44,4 +44,9 @@ public class TournamentController {
     public void editTournamentDetails(@RequestBody Tournament tournamentToEdit){
         tournamentService.editTournament(tournamentToEdit);
     }
+
+    @DeleteMapping(path = "api/tournament/{id}/delete")
+    public void deleteTournament(@PathVariable("id") Long tournamentId){
+        tournamentService.deleteTournament(tournamentId);
+    }
 }
