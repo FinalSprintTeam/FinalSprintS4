@@ -23,7 +23,8 @@ public class AddressService {
                 .orElseThrow(() -> new IllegalStateException("Address " + id + " does not exist!"));
     }
 
-    public void addAddress(Address address) {
-        addressRepository.save(address);
+    public Long addAddress(Address address) {
+        Address newAddress = addressRepository.save(address);
+        return newAddress.getId();
     }
 }
