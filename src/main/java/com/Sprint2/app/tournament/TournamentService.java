@@ -37,4 +37,18 @@ public class TournamentService {
 
         tournament.addMember(member, score);
     }
+
+    @Transactional
+    public void editTournament(Tournament tournament){
+        Tournament tournamentToEdit = getTournamentById(tournament.getId());
+        tournamentToEdit.setName(tournament.getName());
+        tournamentToEdit.setLocation(tournament.getLocation());
+
+        tournamentToEdit.setEntryFee(tournament.getEntryFee());
+
+        tournamentToEdit.setStartDate(tournament.getStartDate());
+        tournamentToEdit.setEndDate(tournament.getEndDate());
+
+        tournamentToEdit.setMembers(tournament.getMembers());
+    }
 }
