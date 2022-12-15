@@ -35,4 +35,13 @@ public class MemberController {
         return new ResponseEntity<>(memberService.addMember(member, addressID, typeName), HttpStatus.OK);
     }
 
+    @PutMapping(path = "api/member/{id}/edit", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Member> updateMember(@RequestBody Member member, @RequestParam Long addressID, @RequestParam String typeName) {
+        return new ResponseEntity<>(memberService.editMember(member, addressID, typeName), HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "api/member/{id}/delete")
+    public void deleteMember(@PathVariable("id") Long memberId){
+        memberService.deleteTournament(memberId);
+    }
 }

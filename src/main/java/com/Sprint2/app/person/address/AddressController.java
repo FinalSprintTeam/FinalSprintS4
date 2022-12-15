@@ -25,7 +25,7 @@ public class AddressController {
         return addressService.getAddress(id);
     }
 
-    @PostMapping(path = "api/address/new", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = {"api/address/new", "api/address/edit"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Long>> newAddress(@RequestBody Address address){
         Map<String, Long> body = new HashMap<>();
         body.put("id", addressService.addAddress(address));
