@@ -30,7 +30,7 @@ public class Member extends Person {
     @JoinColumn(name="membership_type_id", referencedColumnName = "id")
     private MembershipType membership;
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<TournamentMember> tournaments = new HashSet<>();
 

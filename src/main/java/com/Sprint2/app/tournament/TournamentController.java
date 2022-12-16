@@ -33,11 +33,17 @@ public class TournamentController {
         return new ResponseEntity<>(tournamentService.addTournament(tournament), HttpStatus.OK) ;
     }
 
-    @PostMapping(path = "api/tournament/addMember")
-    public void addMemberToTournament(@RequestParam Long memberId,
+    @PostMapping(path = "api/tournament/addMember", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Tournament> addMemberToTournament(@RequestParam Long memberId,
                                       @RequestParam Long tournamentId,
                                       @RequestParam int score){
-       tournamentService.addMemberToTournament(memberId, tournamentId, score);
+       return new ResponseEntity<>(tournamentService.addMemberToTournament(memberId, tournamentId, score), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "api/tournament/removeMember", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Tournament> removeMemberFromTournament(@RequestParam Long memberId,
+                                                            @RequestParam Long tournamentId){
+        return new ResponseEntity<>(tournamentService.removeMemberFromTournament(memberId, tournamentId), HttpStatus.OK);
     }
 
     @PutMapping(path = "api/tournament/{id}/edit")
