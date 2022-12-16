@@ -19,9 +19,9 @@ public class TournamentService {
         return tournamentRepository.findAll();
     }
 
-    public Tournament getTournamentById(Long tournamentid) {
-        return tournamentRepository.findById(tournamentid)
-                .orElseThrow(() -> new IllegalStateException("Tournament with id " + tournamentid + " does not exist!"));
+    public Tournament getTournamentById(Long tournamentId) {
+        return tournamentRepository.findById(tournamentId)
+                .orElseThrow(() -> new IllegalStateException("Tournament with id " + tournamentId + " does not exist!"));
     }
 
     public Tournament addTournament(Tournament tournament) {
@@ -29,13 +29,25 @@ public class TournamentService {
     }
 
     @Transactional
-    public void addMemberToTournament(Long memberId, Long tournamentId, int score){
+    public Tournament addMemberToTournament(Long memberId, Long tournamentId, int score){
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalStateException("Member with id " + memberId + " does not exist!"));
 
         Tournament tournament = getTournamentById(tournamentId);
 
         tournament.addMember(member, score);
+        return tournament;
+    }
+
+    @Transactional
+    public Tournament removeMemberFromTournament(Long memberId, Long tournamentId){
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalStateException("Member with id " + memberId + " does not exist!"));
+
+        Tournament tournament = getTournamentById(tournamentId);
+
+        tournament.removeMember(member);
+        return tournament;
     }
 
     @Transactional
@@ -48,8 +60,6 @@ public class TournamentService {
 
         tournamentToEdit.setStartDate(tournament.getStartDate());
         tournamentToEdit.setEndDate(tournament.getEndDate());
-
-        // tournamentToEdit.setMembers(tournament.getMembers());
     }
 
     public void deleteTournament(Long tournamentId){

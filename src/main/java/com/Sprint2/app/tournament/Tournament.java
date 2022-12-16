@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 @Getter
@@ -41,7 +42,7 @@ public class Tournament {
     @Column(name = "entry_fee")
     private double entryFee;
 
-    @OneToMany(mappedBy = "tournament", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tournament", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<TournamentMember> members = new HashSet<>();
 
     public void addMember(Member member, int score){
@@ -50,17 +51,16 @@ public class Tournament {
         member.getTournaments().add(tournamentMember);
     }
 
+    public void removeMember(Member member){
+        for (Iterator<TournamentMember> iterator = members.iterator(); iterator.hasNext();){
+            TournamentMember tournamentMember = iterator.next();
 
-    //    public void setStartDate(String date) {
-//        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-//        Date startDate = null;
-//        try {
-//            startDate = df.parse(date);
-//            this.startDate = startDate;
-//        } catch (ParseException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
+            if (tournamentMember.getTournament().equals(this) && tournamentMember.getMember().equals(member)){
+                iterator.remove();
+                tournamentMember.setTournament(null);
+                tournamentMember.setMember(null);
+            }
+        }
+    }
 }
 
