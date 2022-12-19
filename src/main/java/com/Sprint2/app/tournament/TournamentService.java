@@ -51,7 +51,7 @@ public class TournamentService {
     }
 
     @Transactional
-    public void editTournament(Tournament tournament){
+    public Tournament editTournament(Tournament tournament){
         Tournament tournamentToEdit = getTournamentById(tournament.getId());
         tournamentToEdit.setName(tournament.getName());
         tournamentToEdit.setLocation(tournament.getLocation());
@@ -60,6 +60,8 @@ public class TournamentService {
 
         tournamentToEdit.setStartDate(tournament.getStartDate());
         tournamentToEdit.setEndDate(tournament.getEndDate());
+
+        return tournamentToEdit;
     }
 
     public void deleteTournament(Long tournamentId){

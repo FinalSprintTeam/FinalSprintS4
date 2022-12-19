@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"http://semester4-sprint2-website.s3-website-us-east-1.amazonaws.com/", "http://localhost:3000/"})
 public class MemberController {
     @Autowired MemberService memberService;
 
