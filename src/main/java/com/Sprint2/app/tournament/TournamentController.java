@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"http://semester4-sprint2-website.s3-website-us-east-1.amazonaws.com/", "http://localhost:3000/"})
 public class TournamentController {
     @Autowired TournamentService tournamentService;
     @Autowired
@@ -46,9 +46,9 @@ public class TournamentController {
         return new ResponseEntity<>(tournamentService.removeMemberFromTournament(memberId, tournamentId), HttpStatus.OK);
     }
 
-    @PutMapping(path = "api/tournament/{id}/edit")
-    public void editTournamentDetails(@RequestBody Tournament tournamentToEdit){
-        tournamentService.editTournament(tournamentToEdit);
+    @PutMapping(path = "api/tournament/{id}/edit", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Tournament> editTournamentDetails(@RequestBody Tournament tournamentToEdit){
+        return new ResponseEntity<>(tournamentService.editTournament(tournamentToEdit), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "api/tournament/{id}/delete")
